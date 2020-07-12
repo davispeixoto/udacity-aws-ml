@@ -128,9 +128,9 @@ class Binomial(Distribution):
         #       1 on the x-axis and 20 on the y-axis
 
         #       Make sure to label the chart with a title, x-axis label and y-axis label
-        plt.hist(self.data)
-        plt.title('Histogram of Data')
-        plt.xlabel('data')
+        plt.bar(x=['0', '1'], height=[(1 - self.p) * self.n, self.p * self.n])
+        plt.title('Bar Chart of Data')
+        plt.xlabel('outcome')
         plt.ylabel('count')
 
     def pdf(self, k):
@@ -177,6 +177,24 @@ class Binomial(Distribution):
 
         #   This method should also return the x and y values used to make the chart
         #   The x and y values should be stored in separate lists
+
+        x = []
+        y = []
+
+        # calculate the x values to visualize
+        for i in range(self.n + 1):
+            x.append(i)
+            y.append(self.pdf(i))
+
+        # make the plots
+        plt.bar(x, y)
+        plt.title('Distribution of Outcomes')
+        plt.ylabel('Probability')
+        plt.xlabel('Outcome')
+
+        plt.show()
+
+        return x, y
 
     def __add__(self, other):
 
