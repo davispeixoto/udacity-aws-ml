@@ -8,4 +8,6 @@ setup(
     author_email='davis.peixoto@gmail.com',
     description='Udacity AWS ML Course',
     packages=find_packages(),
+    # packages=['distributons'],
+    zip_safe=False
 )
