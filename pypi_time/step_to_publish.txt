@@ -1,0 +1,19 @@
+First we need a directory with a setup.py and the folders to the package
+the setup.py will have the mapping to the folders
+
+Inside the package directory - the one with the __init__.py file, at the same level, we should have
+a README.md and a license.txt (probably with MIT license as I always use)
+
+all files, tests, classes should be organized inside this folder
+
+with all code done and tests passing, you should go to the folder with the setup.py and run
+
+python setup.py sdist # this will create the files and folders ready for upload
+pip install twine # in case it is not installed
+
+twine upload --repository-url https://test.pypi.org/legacy/ dist/* #this will upload the dist folder contents to the test pypi. There you can check installation. It asks for username and password
+pip install --index-url https://test.pypi.org/simple/ davis-distributions==1.0.0 # this will install the package you just uploaded... checking of everything is ok
+pip uninstall davis-distributions # uninstall the test package...
+
+twine upload dist/* # now to the real pypi repositories... it asks for username and password
+pip install davis-distributions # test the real deal
